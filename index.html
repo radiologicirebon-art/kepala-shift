@@ -5,131 +5,147 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RS Mitra Plumbon - Dashboard Terintegrasi</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <!-- ======================
-       Styles (all-in-one)
+       Styles (modern polished)
        ====================== -->
   <style>
-    /* ---------- Root / Theme ---------- */
     :root{
-      --blue:#0b67d0;
-      --accent:#0b99a0;
-      --muted:#6b7280;
-      --card-bg:#ffffff;
-      --page-bg: linear-gradient(90deg,#f2f6fc,#e8f3ff);
+      --bg-1: #eef6ff;
+      --bg-2: #f7fbff;
+      --primary: #0b67d0;
+      --accent: #0b99a0;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --glass: rgba(255,255,255,0.65);
       --radius:14px;
+      --shadow-1: 0 6px 24px rgba(11,103,208,0.08);
+      --glass-border: rgba(15,51,99,0.06);
+      --glass-weak: rgba(255,255,255,0.5);
+      --trans-fast: 180ms;
     }
+
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:var(--page-bg);
-      color:#0f172a;
+      font-family: 'Poppins', Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color: #071032;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       min-height:100vh;
-      display:flex;
-      flex-direction:column;
+      display:flex;flex-direction:column;
+      transition: background var(--trans-fast) ease;
     }
 
-    /* ---------- Top navbar ---------- */
+    /* ---------- Top navbar (glass + blur) ---------- */
     .navbar{
-      background:linear-gradient(90deg,var(--blue),#054ea6);
-      color:white;
-      padding:12px 20px;
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:space-between;
-      box-shadow:0 6px 24px rgba(11,103,208,0.12);
+      position:sticky;top:0;z-index:40;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 20px;gap:12px;
+      background: linear-gradient(90deg, rgba(11,103,208,0.95), rgba(5,78,166,0.92));
+      color:white;backdrop-filter: blur(6px);box-shadow:var(--shadow-1);
+      border-bottom:1px solid rgba(255,255,255,0.06);
     }
-    .nav-left{display:flex;gap:12px;align-items:center}
-    .brand { font-weight:700; font-size:18px; display:flex; gap:10px; align-items:center;}
-    .brand img{height:36px; border-radius:6px}
-    .nav-menu { display:flex; gap:8px; align-items:center; }
-    .nav-menu button {
-      background:transparent;border:none;color:white;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;
-      transition: background .12s;
+    .brand{display:flex;gap:12px;align-items:center;font-weight:600}
+    .brand img{height:40px;border-radius:8px;box-shadow:0 4px 18px rgba(2,6,23,0.12)}
+    .brand .title{font-size:16px}
+    .brand .subtitle{font-size:12px;opacity:0.9}
+
+    .nav-menu{display:flex;gap:8px;align-items:center}
+    .nav-menu button{
+      background:transparent;border:none;color:rgba(255,255,255,0.95);
+      padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:600;font-size:14px;
+      transition: transform var(--trans-fast), background var(--trans-fast), box-shadow var(--trans-fast);
+      display:inline-flex;align-items:center;gap:8px;
     }
-    .nav-menu button:hover { background: rgba(255,255,255,0.08); }
-    .nav-menu button.active { background: rgba(255,255,255,0.12); box-shadow: inset 0 -2px 0 rgba(255,255,255,0.06); }
+    .nav-menu button:hover{ transform:translateY(-3px); background: rgba(255,255,255,0.06); }
+    .nav-menu button.active{ background: rgba(255,255,255,0.12); box-shadow: inset 0 -2px 0 rgba(255,255,255,0.06); }
 
-    /* right area */
-    .nav-right { display:flex; gap:12px; align-items:center; }
-    .status-pill { background: rgba(255,255,255,0.08); padding:6px 10px;border-radius:999px;font-size:13px;display:flex; gap:8px; align-items:center; }
-    .status-pill strong{font-weight:700;color:#fff}
-    .small-muted{font-size:12px;color:rgba(255,255,255,0.85)}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .status-pill{background: rgba(255,255,255,0.06);padding:8px 12px;border-radius:999px;display:flex;gap:12px;align-items:center;font-size:13px}
+    .status-pill strong{font-weight:700}
 
-    /* ---------- Page container ---------- */
-    .container { max-width:1100px; margin:22px auto; width:100%; padding:0 16px 60px; display:flex; flex-direction:column; gap:18px; }
+    /* container */
+    .container{max-width:1180px;margin:20px auto;padding:0 18px 70px;display:flex;flex-direction:column;gap:18px}
 
-    /* ---------- Card ---------- */
-    .card { background:var(--card-bg); border-radius:var(--radius); padding:16px; box-shadow:0 10px 30px rgba(13,38,76,0.06); border:1px solid rgba(15,51,99,0.06); }
+    /* card */
+    .card{background:linear-gradient(180deg,var(--card),rgba(255,255,255,0.98));border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-1);border:1px solid var(--glass-border);transition: transform var(--trans-fast), box-shadow var(--trans-fast)}
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 48px rgba(11,103,208,0.08)}
 
-    h1,h2,h3{margin:0}
-    h1{font-size:20px;color:var(--blue)}
-    h2{font-size:16px;color:var(--blue);margin-bottom:8px}
+    h1{margin:0;font-size:20px;color:var(--primary)}
+    h2{margin:0;font-size:16px;color:var(--primary);margin-bottom:8px}
 
-    /* ---------- top dashboard row ---------- */
-    .row { display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap; }
-    .col { flex:1; min-width:260px; }
+    .row{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
+    .col{flex:1;min-width:260px}
 
-    /* schedule list grid */
-    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; margin-top:12px; }
-    .card-item { background:#fbfdff; border-radius:10px; padding:12px; border:1px solid #e6eefc; position:relative; }
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+    .card-item{background:linear-gradient(180deg,#fbfdff,#ffffff);border-radius:12px;padding:12px;border:1px solid #e6eefc;position:relative;transition: transform var(--trans-fast), box-shadow var(--trans-fast);}
+    .card-item:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(2,6,23,0.06)}
 
-    /* form elements */
     label{display:block;font-size:13px;margin-bottom:6px;color:#0f172a}
-    input[type="text"], input[type="date"], input[type="time"], select, textarea {
-      width:100%; padding:10px 12px; border-radius:8px; border:1px solid #e6e9ef; font-size:14px; background:#fbfdff;
+    input[type="text"], input[type="date"], input[type="time"], select, textarea{
+      width:100%;padding:12px;border-radius:10px;border:1px solid #e9eef7;background:#fbfdff;font-size:14px;transition:box-shadow var(--trans-fast),border-color var(--trans-fast);
     }
+    input:focus, textarea:focus, select:focus{outline:none;border-color:var(--primary);box-shadow:0 6px 22px rgba(11,103,208,0.06)}
+
     .actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
-    button.primary{background:var(--blue);color:white;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600}
-    button.ghost{background:transparent;border:1px solid #d1d5db;padding:10px 14px;border-radius:10px;cursor:pointer}
+    button.primary{background:linear-gradient(90deg,var(--primary),#0a5eb8);color:white;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;box-shadow:0 8px 20px rgba(11,103,208,0.08);transition:transform var(--trans-fast)}
+    button.primary:active{transform:translateY(1px)}
+    button.ghost{background:transparent;border:1px solid #e2e8f0;padding:10px 14px;border-radius:10px;cursor:pointer}
 
-    /* notulen signature */
-    .sig-pad{border:1px dashed #94a3b8;height:120px;border-radius:6px}
-    #previewNotulen{border:1px solid #e2e8f0;padding:16px;margin-top:12px;background:#fff}
+    .sig-pad{border:1px dashed #ccd6e6;height:120px;border-radius:8px}
 
-    /* monitoring view */
-    .chart-wrap{background:#fff;padding:14px;border-radius:12px;box-shadow:0 6px 20px rgba(2,6,23,0.04);border:1px solid #eef3f9}
-    canvas{max-width:100%}
+    .chart-wrap{background:linear-gradient(180deg,#fff,#fbfdff);padding:16px;border-radius:12px;box-shadow:0 8px 28px rgba(2,6,23,0.04);border:1px solid #eef3f9}
 
-    /* popup / overlay */
-    .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:9999}
+    .overlay{position:fixed;inset:0;background:rgba(7,10,25,0.45);display:none;align-items:center;justify-content:center;z-index:9999}
     .overlay.show{display:flex}
-    .overlay .box{background:#fff;padding:18px;border-radius:10px;max-width:420px;width:90%;text-align:center}
+    .overlay .box{background:linear-gradient(180deg,#fff,#fbfdff);padding:18px;border-radius:12px;max-width:480px;width:92%;text-align:center;box-shadow:0 10px 40px rgba(2,6,23,0.08)}
 
-    /* responsive tweaks */
     @media(max-width:880px){
       .nav-menu{display:none}
       .container{padding:0 12px}
     }
 
-    /* utility */
     .muted{color:var(--muted)}
     .tiny{font-size:12px}
     .mb8{margin-bottom:8px}
     .mt8{margin-top:8px}
     .center{text-align:center}
     .right{text-align:right}
-    .danger{color:#b91c1c}
+    .delete-btn{position:absolute;right:8px;top:8px;background:transparent;border:none;cursor:pointer;font-size:14px}
+
+    .fade-in{animation:fadeIn .42s ease both}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+    #docNotulen table{border-collapse:collapse}
+    #docNotulen td{padding:6px}
   </style>
 
-  <!-- ======================
-       Libraries (compat)
-       ====================== -->
+  <!-- Keep existing libraries (compat) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
-
-  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <!-- Signature, html2canvas, jspdf -->
+<script>
+setTimeout(function(){
+  if (window.Chart && Chart._adapters && Chart._adapters._date) {
+    console.log("✅ Date adapter aktif:", Chart._adapters._date);
+  } else {
+    console.warn("⚠️ Date adapter TIDAK aktif — chart may error if adapter missing.");
+  }
+}, 200);
+</script>
+
   <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 
 </head>
+<body>
 <body>
 
   <!-- ======================
@@ -380,6 +396,45 @@
         <div style="flex:1;min-width:300px" class="chart-wrap card">
           <h3 class="mb8">Grafik Realtime (line chart) — 50 data terakhir</h3>
           <canvas id="suhuChart" height="180"></canvas>
+
+        <!-- 🔧 Bagian Baru: Form Input Suhu & Kelembaban Manual -->
+        <div style="margin-top:12px;display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
+          <div style="flex:1;min-width:260px" class="card-item">
+            <h4 class="mb8">Input Manual Suhu & Kelembaban</h4>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <div>
+                <label>Suhu (°C)</label>
+                <input id="inputSuhu" type="number" step="0.1" placeholder="e.g. 25.8">
+              </div>
+              <div>
+                <label>Kelembaban (%)</label>
+                <input id="inputKelembaban" type="number" step="1" placeholder="e.g. 60">
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
+              <button id="saveManualSuhu" class="primary">💾 Simpan Suhu</button>
+              <button id="clearManualSuhu" class="ghost">Reset</button>
+            </div>
+            <div id="manualSaveMsg" class="muted tiny mt8" style="margin-top:8px"></div>
+          </div>
+
+          <div style="flex:1;min-width:320px" class="card-item">
+            <h4 class="mb8">Tabel Log Suhu Harian (Terbaru)</h4>
+            <div style="max-height:220px;overflow:auto;border-radius:8px;border:1px solid #eef3f9;padding:6px;background:#fff">
+              <table id="dailyLogTable" style="width:100%;border-collapse:collapse">
+                <thead style="position:sticky;top:0;background:#f7fbff">
+                  <tr><th style="text-align:left;padding:6px;border-bottom:1px solid #eef3f9">Waktu</th><th style="text-align:right;padding:6px;border-bottom:1px solid #eef3f9">Suhu (°C)</th><th style="text-align:right;padding:6px;border-bottom:1px solid #eef3f9">Kelembaban (%)</th></tr>
+                </thead>
+                <tbody id="dailyLogBody"></tbody>
+              </table>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:8px;justify-content:flex-end">
+              <button id="refreshDailyLog" class="ghost">Refresh</button>
+            </div>
+          </div>
+        </div>
+        <!-- /Bagian Baru -->
+
         </div>
 
         <div style="width:320px" class="card">
@@ -847,7 +902,17 @@
        --------------------------- */
     // Chart.js setup
     const ctx = document.getElementById('suhuChart').getContext('2d');
-    const suhuChart = new Chart(ctx, {
+    
+// WAIT for date adapter to be ready before creating the chart
+function createSuhuChartWhenAdapterReady() {
+  const maxAttempts = 50;
+  let attempts = 0;
+  function tryCreate() {
+    attempts++;
+    if (window.Chart && Chart._adapters && Chart._adapters._date) {
+      // Adapter ready — create the chart now
+      try {
+        const suhuChart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: [],
@@ -887,8 +952,21 @@
         }
       }
     });
-
-    // threshold inputs
+      } catch (e) {
+        console.error('Failed creating chart:', e);
+      }
+      return;
+    }
+    if (attempts < maxAttempts) {
+      setTimeout(tryCreate, 100);
+    } else {
+      console.error('Date adapter not available after waiting — chart may not render.');
+    }
+  }
+  tryCreate();
+}
+createSuhuChartWhenAdapterReady();
+// threshold inputs
     const thresholdSuhuInput = document.getElementById('thresholdSuhu');
     const thresholdKelembabanInput = document.getElementById('thresholdKelembaban');
     const saveThresholdBtn = document.getElementById('saveThreshold');
@@ -1070,7 +1148,104 @@
     document.getElementById('viewDate').value = new Date().toISOString().slice(0,10);
 
   })();
-  </script>
+  
+/* 🔧 Bagian Baru (JS): Simpan manual suhu & render tabel harian */
+(function(){
+  const inputSuhu = document.getElementById('inputSuhu');
+  const inputKelembaban = document.getElementById('inputKelembaban');
+  const saveBtn = document.getElementById('saveManualSuhu');
+  const clearBtn = document.getElementById('clearManualSuhu');
+  const msgBox = document.getElementById('manualSaveMsg');
+  const dailyTableBody = document.getElementById('dailyLogBody');
+  const refreshBtn = document.getElementById('refreshDailyLog');
+
+  // Helper: push new log to monitoringDB/ref('logs')
+  async function pushManualLog(suhuVal, kelembabanVal){
+    try{
+      const payload = {
+        suhu: suhuVal,
+        kelembaban: kelembabanVal,
+        timestamp: new Date().toISOString()
+      };
+      // use push to create unique key
+      const newRef = monitoringDB.ref('logs').push();
+      await newRef.set(payload);
+      return { ok:true, key: newRef.key };
+    }catch(err){
+      console.error('Gagal simpan manual log', err);
+      return { ok:false, error: err };
+    }
+  }
+
+  saveBtn && saveBtn.addEventListener('click', async function(){
+    msgBox.textContent = '';
+    const sVal = inputSuhu.value;
+    const kVal = inputKelembaban.value;
+    if (!sVal && !kVal){ msgBox.textContent = 'Isi suhu dan/atau kelembaban.'; return; }
+    const sNum = parseFloat(sVal);
+    const kNum = parseFloat(kVal);
+    if (isNaN(sNum) || isNaN(kNum)){ msgBox.textContent = 'Nilai tidak valid.'; return; }
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Menyimpan...';
+    const res = await pushManualLog(sNum, kNum);
+    if (res.ok){
+      msgBox.textContent = '✅ Data tersimpan.'; inputSuhu.value=''; inputKelembaban.value='';
+      setTimeout(()=> msgBox.textContent = '', 3000);
+    } else {
+      msgBox.textContent = '❌ Gagal menyimpan: ' + (res.error && res.error.message ? res.error.message : 'unknown');
+    }
+    saveBtn.disabled = false; saveBtn.textContent = '💾 Simpan Suhu';
+  });
+
+  clearBtn && clearBtn.addEventListener('click', function(){ inputSuhu.value=''; inputKelembaban.value=''; msgBox.textContent=''; });
+
+  // Render daily log table (latest first). We'll fetch last 200 entries and filter by today's date (local)
+  async function loadDailyLogs(){
+    try{
+      dailyTableBody.innerHTML = '<tr><td colspan="3" class="muted" style="padding:8px">Memuat...</td></tr>';
+      const snap = await monitoringDB.ref('logs').limitToLast(200).get();
+      const val = snap.val();
+      if (!val){ dailyTableBody.innerHTML = '<tr><td colspan="3" class="muted" style="padding:8px">Belum ada data.</td></tr>'; return; }
+      const arr = Object.values(val).map(v => (Object.assign({}, v))).sort((a,b)=> new Date(b.timestamp) - new Date(a.timestamp));
+      // Filter to today (local)
+      const today = new Date();
+      const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate()+1);
+      const filtered = arr.filter(r => {
+        try {
+          const t = new Date(r.timestamp);
+          return t >= startOfDay && t < endOfDay;
+        } catch(e) { return false; }
+      });
+      if (filtered.length === 0){ dailyTableBody.innerHTML = '<tr><td colspan="3" class="muted" style="padding:8px">Tidak ada data hari ini.</td></tr>'; return; }
+      dailyTableBody.innerHTML = '';
+      filtered.forEach(r => {
+        const t = new Date(r.timestamp);
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td style="padding:6px;border-bottom:1px solid #f1f6fb">${t.toLocaleString()}</td><td style="padding:6px;border-bottom:1px solid #f1f6fb;text-align:right">${parseFloat(r.suhu).toFixed(1)}</td><td style="padding:6px;border-bottom:1px solid #f1f6fb;text-align:right">${parseFloat(r.kelembaban).toFixed(0)}</td>`;
+        dailyTableBody.appendChild(tr);
+      });
+    }catch(err){
+      console.error('Gagal loadDailyLogs', err);
+      dailyTableBody.innerHTML = '<tr><td colspan="3" class="muted" style="padding:8px">Gagal memuat data.</td></tr>';
+    }
+  }
+
+  refreshBtn && refreshBtn.addEventListener('click', loadDailyLogs);
+
+  // Realtime update: when logs change, reload table (debounced)
+  let reloadTimer = null;
+  monitoringDB.ref('logs').limitToLast(1).on('child_added', snap => {
+    if (reloadTimer) clearTimeout(reloadTimer);
+    reloadTimer = setTimeout(()=> {
+      loadDailyLogs();
+    }, 300);
+  });
+
+  // initial load
+  setTimeout(loadDailyLogs, 300);
+})();
+</script>
 
 </body>
 </html>
