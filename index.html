@@ -7,9 +7,6 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- ======================
-       Styles (modern polished)
-       ====================== -->
   <style>
     :root{
       --bg-1: #eef6ff;
@@ -34,13 +31,10 @@
       background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
       color: #071032;
       -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
       min-height:100vh;
       display:flex;flex-direction:column;
-      transition: background var(--trans-fast) ease;
     }
 
-    /* ---------- Top navbar (glass + blur) ---------- */
     .navbar{
       position:sticky;top:0;z-index:40;
       display:flex;align-items:center;justify-content:space-between;
@@ -51,29 +45,24 @@
     }
     .brand{display:flex;gap:12px;align-items:center;font-weight:600}
     .brand img{height:40px;border-radius:8px;box-shadow:0 4px 18px rgba(2,6,23,0.12)}
-    .brand .title{font-size:16px}
-    .brand .subtitle{font-size:12px;opacity:0.9}
-
+    
     .nav-menu{display:flex;gap:8px;align-items:center}
     .nav-menu button{
       background:transparent;border:none;color:rgba(255,255,255,0.95);
       padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:600;font-size:14px;
-      transition: transform var(--trans-fast), background var(--trans-fast), box-shadow var(--trans-fast);
+      transition: all var(--trans-fast);
       display:inline-flex;align-items:center;gap:8px;
     }
-    .nav-menu button:hover{ transform:translateY(-3px); background: rgba(255,255,255,0.06); }
-    .nav-menu button.active{ background: rgba(255,255,255,0.12); box-shadow: inset 0 -2px 0 rgba(255,255,255,0.06); }
+    .nav-menu button:hover{ transform:translateY(-3px); background: rgba(255,255,255,0.1); }
+    .nav-menu button.active{ background: rgba(255,255,255,0.15); box-shadow: inset 0 -2px 0 rgba(255,255,255,0.2); }
 
     .nav-right{display:flex;align-items:center;gap:12px}
-    .status-pill{background: rgba(255,255,255,0.06);padding:8px 12px;border-radius:999px;display:flex;gap:12px;align-items:center;font-size:13px}
-    .status-pill strong{font-weight:700}
+    .status-pill{background: rgba(255,255,255,0.1);padding:8px 16px;border-radius:12px;display:flex;gap:15px;align-items:center;font-size:13px}
 
-    /* container */
     .container{max-width:1180px;margin:20px auto;padding:0 18px 70px;display:flex;flex-direction:column;gap:18px}
 
-    /* card */
-    .card{background:linear-gradient(180deg,var(--card),rgba(255,255,255,0.98));border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-1);border:1px solid var(--glass-border);transition: transform var(--trans-fast), box-shadow var(--trans-fast)}
-    .card:hover{transform:translateY(-6px);box-shadow:0 18px 48px rgba(11,103,208,0.08)}
+    .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow-1);border:1px solid var(--glass-border);transition: transform var(--trans-fast)}
+    .card:hover{transform:translateY(-4px)}
 
     h1{margin:0;font-size:20px;color:var(--primary)}
     h2{margin:0;font-size:16px;color:var(--primary);margin-bottom:8px}
@@ -82,198 +71,113 @@
     .col{flex:1;min-width:260px}
 
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-    .card-item{background:linear-gradient(180deg,#fbfdff,#ffffff);border-radius:12px;padding:12px;border:1px solid #e6eefc;position:relative;transition: transform var(--trans-fast), box-shadow var(--trans-fast);}
-    .card-item:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(2,6,23,0.06)}
+    .card-item{background:#fbfdff;border-radius:12px;padding:12px;border:1px solid #e6eefc;position:relative}
 
-    label{display:block;font-size:13px;margin-bottom:6px;color:#0f172a}
-    input[type="text"], input[type="date"], input[type="time"], select, textarea{
-      width:100%;padding:12px;border-radius:10px;border:1px solid #e9eef7;background:#fbfdff;font-size:14px;transition:box-shadow var(--trans-fast),border-color var(--trans-fast);
+    input, select, textarea{
+      width:100%;padding:12px;border-radius:10px;border:1px solid #e9eef7;background:#fbfdff;font-size:14px;
     }
-    input:focus, textarea:focus, select:focus{outline:none;border-color:var(--primary);box-shadow:0 6px 22px rgba(11,103,208,0.06)}
+    input:focus{outline:none;border-color:var(--primary)}
 
-    .actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
-    button.primary{background:linear-gradient(90deg,var(--primary),#0a5eb8);color:white;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;box-shadow:0 8px 20px rgba(11,103,208,0.08);transition:transform var(--trans-fast)}
-    button.primary:active{transform:translateY(1px)}
-    button.ghost{background:transparent;border:1px solid #e2e8f0;padding:10px 14px;border-radius:10px;cursor:pointer}
+    button.primary{background:var(--primary);color:white;border:none;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:700}
+    button.ghost{background:transparent;border:1px solid #e2e8f0;padding:10px 16px;border-radius:10px;cursor:pointer}
 
-    .sig-pad{border:1px dashed #ccd6e6;height:120px;border-radius:8px}
+    .sig-pad{border:1px dashed #ccd6e6;height:120px;border-radius:8px;width:100%;background:#fff}
 
-    .chart-wrap{background:linear-gradient(180deg,#fff,#fbfdff);padding:16px;border-radius:12px;box-shadow:0 8px 28px rgba(2,6,23,0.04);border:1px solid #eef3f9}
-
-    .overlay{position:fixed;inset:0;background:rgba(7,10,25,0.45);display:none;align-items:center;justify-content:center;z-index:9999}
+    .overlay{position:fixed;inset:0;background:rgba(7,10,25,0.6);display:none;align-items:center;justify-content:center;z-index:9999}
     .overlay.show{display:flex}
-    .overlay .box{background:linear-gradient(180deg,#fff,#fbfdff);padding:18px;border-radius:12px;max-width:480px;width:92%;text-align:center;box-shadow:0 10px 40px rgba(2,6,23,0.08)}
-
-    @media(max-width:880px){
-      .nav-menu{display:none}
-      .container{padding:0 12px}
-    }
+    .overlay .box{background:#fff;padding:25px;border-radius:15px;max-width:400px;width:90%;text-align:center}
 
     .muted{color:var(--muted)}
     .tiny{font-size:12px}
-    .mb8{margin-bottom:8px}
     .mt8{margin-top:8px}
-    .center{text-align:center}
-    .right{text-align:right}
-    .delete-btn{position:absolute;right:8px;top:8px;background:transparent;border:none;cursor:pointer;font-size:14px}
+    .mb8{margin-bottom:8px}
+    .delete-btn{position:absolute;right:8px;top:8px;background:transparent;border:none;cursor:pointer}
 
-    .fade-in{animation:fadeIn .42s ease both}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-
-    #docNotulen table{border-collapse:collapse}
-    #docNotulen td{padding:6px}
+    @media(max-width:880px){
+      .nav-menu{display:none}
+    }
   </style>
 
-  <!-- Keep existing libraries (compat) -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-setTimeout(function(){
-  if (window.Chart && Chart._adapters && Chart._adapters._date) {
-    console.log("✅ Date adapter aktif:", Chart._adapters._date);
-  } else {
-    console.warn("⚠️ Date adapter TIDAK aktif — chart may error if adapter missing.");
-  }
-}, 200);
-</script>
-
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
   <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
-
 </head>
-<body>
+
 <body>
 
-  <!-- ======================
-       NAVBAR (TOP - horizontal menu)
-       ====================== -->
   <div class="navbar">
     <div class="nav-left">
       <div class="brand">
-        <!-- optional logo img -->
-        <img id="logoImg" src="" alt="RSMP Logo" style="display:none" />
         <div>
-          RS Mitra Plumbon — Instalasi Radiologi
-          <div class="tiny small-muted">Dashboard Kepala Shift & Monitoring Terpadu</div>
+          RS Mitra Plumbon — Radiologi
+          <div class="tiny" style="opacity:0.8">Dashboard Kepala Shift Terpadu</div>
         </div>
       </div>
-      <nav class="nav-menu" aria-label="Main menu">
+      <nav class="nav-menu">
         <button id="menu_dashboard" class="active" data-view="dashboardView">🏠 Dashboard</button>
         <button id="menu_schedule" data-view="scheduleView">📋 Jadwal</button>
         <button id="menu_notulen" data-view="notulenView">📖 Notulen</button>
-        <button id="menu_monitor" data-view="monitorView">📊 Monitoring Suhu</button>
+        <button id="menu_monitor" data-view="monitorView">📊 Monitoring</button>
       </nav>
     </div>
 
     <div class="nav-right">
-      <div class="status-pill" title="Status Suhu & Kelembaban (realtime)">
-        <div style="display:flex;flex-direction:column">
-          <span style="font-size:12px" class="small-muted">Suhu</span>
-          <strong id="navSuhu">-- °C</strong>
-        </div>
-        <div style="width:1px;height:34px;background:rgba(255,255,255,0.12)"></div>
-        <div style="display:flex;flex-direction:column">
-          <span style="font-size:12px" class="small-muted">Kelembaban</span>
-          <strong id="navKelembaban">-- %</strong>
-        </div>
+      <div class="status-pill">
+        <div><span class="tiny muted">Suhu:</span> <strong id="navSuhu">--</strong></div>
+        <div><span class="tiny muted">Lembab:</span> <strong id="navKelembaban">--</strong></div>
       </div>
-      <div style="width:12px"></div>
       <div class="muted tiny">Koordinator: <strong>Ino Hadiwinata, A.Md.Rad</strong></div>
     </div>
   </div>
 
-  <!-- ======================
-       Page container
-       ====================== -->
   <div class="container">
-
-    <!-- ============= Dashboard View (default) ============= -->
     <section id="dashboardView" class="view card">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px">
         <div>
-          <h1>Selamat Datang, Kepala Shift</h1>
-          <p class="muted tiny">Dashboard ringkasan & akses cepat</p>
+          <h1>Halo, Kepala Shift</h1>
+          <p class="muted tiny">Monitoring operasional harian Radiologi</p>
         </div>
-        <div style="display:flex;gap:8px;align-items:center">
+        <div style="display:flex;gap:10px">
           <button id="enableSoundBtn" class="primary">🔈 Aktifkan Suara</button>
-          <button id="belBtn" class="ghost" disabled>🔔 Kirim Notifikasi</button>
+          <button id="belBtn" class="ghost" disabled>🔔 Tes Bel</button>
         </div>
       </div>
 
       <div class="row mt8">
         <div class="col card">
-          <h2>Pengingat Kepala Shift</h2>
-          <p class="muted mb8">Pop-up otomatis: 10:25, 13:25, 17:55 WIB</p>
-          <div style="display:flex;gap:8px;align-items:center">
-            <div style="flex:1">
-              <p class="muted tiny">Klik "Aktifkan Suara" untuk mengaktifkan notifikasi audio di perangkat ini.</p>
-            </div>
-            <div style="display:flex;gap:8px">
-              <button id="testPopup" class="ghost">🔔 Tes Popup</button>
-            </div>
-          </div>
+          <h2>🔔 Pengingat Shift</h2>
+          <p class="tiny muted">Pop-up muncul pada: 10:25, 13:25, 17:55 WIB</p>
+          <button id="testPopup" class="ghost mt8">Coba Notifikasi</button>
         </div>
-
         <div class="col card">
-          <h2>Ringkasan Monitoring</h2>
-          <p class="muted tiny">Status suhu & kelembaban saat ini (realtime)</p>
-          <div style="display:flex;gap:12px;align-items:center;margin-top:12px">
-            <div style="flex:1">
-              <div class="muted tiny">Suhu</div>
-              <div style="font-size:20px;font-weight:700"><span id="dashSuhuLarge">--</span> °C</div>
-            </div>
-            <div style="flex:1">
-              <div class="muted tiny">Kelembaban</div>
-              <div style="font-size:20px;font-weight:700"><span id="dashKelembabanLarge">--</span> %</div>
-            </div>
-            <div style="min-width:160px">
-              <div class="muted tiny">Terakhir diperbarui</div>
-              <div id="dashLastUpdate" class="tiny muted">-</div>
-            </div>
+          <h2>📊 Kondisi Ruangan</h2>
+          <div style="display:flex; gap:20px; margin-top:10px">
+            <div><div class="tiny muted">Suhu</div><div style="font-size:24px; font-weight:700" id="dashSuhuLarge">--</div></div>
+            <div><div class="tiny muted">Kelembaban</div><div style="font-size:24px; font-weight:700" id="dashKelembabanLarge">--</div></div>
           </div>
+          <div id="dashLastUpdate" class="tiny muted mt8">Terakhir: -</div>
         </div>
       </div>
 
       <div class="row mt8">
-        <div class="col card">
-          <h2>Jadwal Hari Ini</h2>
-          <div id="miniScheduleList" class="grid mt8"></div>
-        </div>
-
-        <div class="col card">
-          <h2>Riwayat Notulen Terakhir</h2>
-          <div id="miniNotulenList" style="margin-top:8px"></div>
-        </div>
+        <div class="col card"><h2>📅 Jadwal Terdekat</h2><div id="miniScheduleList" class="grid mt8"></div></div>
+        <div class="col card"><h2>📖 Notulen Terakhir</h2><div id="miniNotulenList" class="mt8"></div></div>
       </div>
     </section>
 
-    <!-- ============= Schedule View ============= -->
     <section id="scheduleView" class="view card" style="display:none">
       <h2>📋 Input Jadwal Pemeriksaan</h2>
-      <form id="scheduleForm" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px">
-        <div>
-          <label>Nama Pasien</label>
-          <input id="name" type="text" required placeholder="Nama pasien">
-        </div>
-        <div>
-          <label>Nomor WA</label>
-          <input id="wa" type="text" required placeholder="089812345678">
-          <p class="muted tiny">Nomor otomatis diubah ke format 62xxxx</p>
-        </div>
-        <div>
-          <label>Tanggal Pemeriksaan</label>
-          <input id="date" type="date" required>
-        </div>
-        <div>
-          <label>Jam Pemeriksaan</label>
-          <input id="time" type="time" required>
-        </div>
-        <div>
-          <label>Pilih Pemeriksaan</label>
+      <form id="scheduleForm" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:10px">
+        <div><label class="tiny">Nama Pasien</label><input id="name" type="text" required></div>
+        <div><label class="tiny">Nomor WA</label><input id="wa" type="text" placeholder="08xxx" required></div>
+        <div><label class="tiny">Tanggal</label><input id="date" type="date" required></div>
+        <div><label class="tiny">Jam</label><input id="time" type="time" required></div>
+        <div style="grid-column: 1/-1">
+          <label class="tiny">Prosedur</label>
           <select id="procedure">
             <option value="ct_abdomen">CT Scan Abdomen</option>
             <option value="usg_abdomen">USG Abdomen</option>
@@ -281,971 +185,249 @@ setTimeout(function(){
             <option value="ct_cardiac">CT Scan Cardiac</option>
           </select>
         </div>
-        <div style="grid-column:1/-1">
-          <label>Persiapan</label>
-          <textarea id="prep" rows="5" readonly></textarea>
-        </div>
-
-        <div style="grid-column:1/-1" class="actions">
-          <div style="flex:1"><div id="message" class="muted tiny"></div></div>
-          <div style="display:flex;gap:8px">
-            <button id="saveBtn" type="submit" class="primary">💾 Simpan Jadwal</button>
-            <button id="saveSendBtn" type="button" class="primary">💾 Simpan + Kirim WA</button>
-          </div>
+        <div style="grid-column: 1/-1"><label class="tiny">Instruksi Persiapan</label><textarea id="prep" rows="4" readonly></textarea></div>
+        <div style="grid-column: 1/-1; display:flex; justify-content:flex-end; gap:8px">
+          <button type="submit" class="primary">Simpan</button>
+          <button id="saveSendBtn" type="button" class="primary">Simpan + Kirim WA</button>
         </div>
       </form>
-
-      <div style="margin-top:16px">
-        <div class="top-row" style="display:flex;justify-content:space-between;align-items:center">
-          <h2>📌 Jadwal Harian</h2>
-          <div style="display:flex;gap:8px;align-items:center">
-            <label class="muted tiny" style="margin:0 6px 0 0">Tanggal:</label>
-            <input id="viewDate" type="date">
-            <label class="muted tiny" style="margin:0 6px 0 0">Filter:</label>
-            <select id="filterProcedure">
-              <option value="all">Semua</option>
-              <option value="ct_abdomen">CT Scan Abdomen</option>
-              <option value="usg_abdomen">USG Abdomen</option>
-              <option value="usg_lower_abdomen">USG Lower Abdomen</option>
-              <option value="ct_cardiac">CT Scan Cardiac</option>
-            </select>
-          </div>
-        </div>
-
-        <div id="scheduleList" class="grid" style="margin-top:12px"></div>
-      </div>
+      <hr style="margin:20px 0; border:0; border-top:1px solid #eee">
+      <div id="scheduleList" class="grid"></div>
     </section>
 
-    <!-- ============= Notulen View ============= -->
     <section id="notulenView" class="view card" style="display:none">
-      <h2>📖 Notulen Operan Dinas Harian</h2>
-      <form id="notulenForm" style="margin-top:10px; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px;">
-        <div>
-          <label>Tanggal</label>
-          <input id="n_tanggal" type="date" required>
-        </div>
-        <div>
-          <label>Shift</label>
-          <select id="n_shift">
-            <option value="Pagi">Pagi</option>
-            <option value="Siang">Siang</option>
-            <option value="Malam">Malam</option>
-          </select>
-        </div>
-        <div style="grid-column:1/-1">
-          <label>Nama Kepala Shift</label>
-          <input id="n_petugas" type="text" placeholder="Nama Kepala Shift" required>
-        </div>
-
-        <div style="grid-column:1/-1">
-          <label>Agenda / Isi Operan Dinas</label>
-          <textarea id="n_agenda" rows="6" placeholder="Tuliskan isi operan dinas..."></textarea>
-        </div>
-
-        <div style="grid-column:1/-1">
-          <h4 style="margin:6px 0;">Checklist Kontrol Mutu</h4>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:8px;">
-            <label><input type="checkbox" class="n_chk" data-key="cek_kontrol_mutu"> Semua data hasil pemeriksaan dicek</label>
-            <label><input type="checkbox" class="n_chk" data-key="ruangan_bersih"> Ruangan rapi & bersih</label>
-            <label><input type="checkbox" class="n_chk" data-key="kontrol_mcu"> Kontrol MCU</label>
-            <label><input type="checkbox" class="n_chk" data-key="input_obat_alkes"> Input obat & alkes</label>
-            <label><input type="checkbox" class="n_chk" data-key="pmri"> PMRI alat</label>
-            <label><input type="checkbox" class="n_chk" data-key="distribusi_foto"> Distribusi foto ke ranap</label>
-            <label><input type="checkbox" class="n_chk" data-key="perbaikan_cepat"> Perbaikan cepat bila kekurangan</label>
-            <label><input type="checkbox" class="n_chk" data-key="kontrol_belum_expertise"> Kontrol hasil belum expertise</label>
-            <label><input type="checkbox" class="n_chk" data-key="kontrol_expertise"> Kontrol hasil expertise</label>
-          </div>
-        </div>
-
-        <div style="grid-column:1/-1">
-          <label>Catatan / Saran</label>
-          <textarea id="n_catatan" rows="3"></textarea>
-        </div>
-
-        <div style="grid-column:1/-1">
-          <label>Tanda Tangan Kepala Shift</label>
+      <h2>📖 Notulen Operan Shift</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px; margin-top:10px">
+        <div><label class="tiny">Tanggal</label><input id="n_tanggal" type="date"></div>
+        <div><label class="tiny">Shift</label><select id="n_shift"><option>Pagi</option><option>Siang</option><option>Malam</option></select></div>
+        <div style="grid-column: 1/-1"><label class="tiny">Kepala Shift</label><input id="n_petugas" type="text"></div>
+        <div style="grid-column: 1/-1"><label class="tiny">Agenda Operan</label><textarea id="n_agenda" rows="4"></textarea></div>
+        <div style="grid-column: 1/-1">
+          <label class="tiny">Tanda Tangan</label>
           <canvas id="n_sigCanvas" class="sig-pad"></canvas>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <button id="n_clearSig" type="button" class="ghost">Bersihkan Tanda Tangan</button>
-            <div class="small-note tiny">Jika tidak ada tanda tangan, PDF tetap akan dibuat tanpa gambar tanda tangan.</div>
-          </div>
-        </div>
-
-        <div style="grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end">
-          <button id="n_save" type="button" class="primary">💾 Simpan Notulen</button>
-          <button id="n_preview" type="button" class="ghost">🔍 Preview</button>
-        </div>
-      </form>
-
-      <div id="previewNotulen" style="display:none;margin-top:12px">
-        <h3>Preview Notulen</h3>
-        <div id="docNotulen" style="background:#fff;padding:12px"></div>
-        <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end">
-          <button id="n_downloadPdf" class="primary">⬇ Download PDF</button>
+          <button id="n_clearSig" class="ghost tiny mt8">Hapus Tanda Tangan</button>
         </div>
       </div>
+      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:15px">
+        <button id="n_save" class="primary">Simpan Notulen</button>
+        <button id="n_preview" class="ghost">Preview & PDF</button>
+      </div>
 
-      <div id="notulenList" style="margin-top:18px"></div>
+      <div id="previewNotulen" style="display:none; margin-top:20px; border:1px solid #eee; padding:15px">
+        <div id="docNotulen"></div>
+        <button id="n_downloadPdf" class="primary mt8">⬇ Unduh PDF</button>
+      </div>
+      <div id="notulenList" class="mt8"></div>
     </section>
 
-    <!-- ============= Monitoring View ============= -->
     <section id="monitorView" class="view card" style="display:none">
       <h2>📊 Monitoring Suhu & Kelembaban</h2>
-
-      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
-        <div style="flex:1;min-width:300px" class="chart-wrap card">
-          <h3 class="mb8">Grafik Realtime (line chart) — 50 data terakhir</h3>
-          <canvas id="suhuChart" height="180"></canvas>
-
-        <!-- 🔧 Bagian Baru: Form Input Suhu & Kelembaban Manual -->
-        <div style="margin-top:12px;display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">
-          <div style="flex:1;min-width:260px" class="card-item">
-            <h4 class="mb8">Input Manual Suhu & Kelembaban</h4>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-              <div>
-                <label>Suhu (°C)</label>
-                <input id="inputSuhu" type="number" step="0.1" placeholder="e.g. 25.8">
-              </div>
-              <div>
-                <label>Kelembaban (%)</label>
-                <input id="inputKelembaban" type="number" step="1" placeholder="e.g. 60">
-              </div>
-            </div>
-            <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
-              <button id="saveManualSuhu" class="primary">💾 Simpan Suhu</button>
-              <button id="clearManualSuhu" class="ghost">Reset</button>
-            </div>
-            <div id="manualSaveMsg" class="muted tiny mt8" style="margin-top:8px"></div>
-          </div>
-
-          <div style="flex:1;min-width:320px" class="card-item">
-            <h4 class="mb8">Tabel Log Suhu Harian (Terbaru)</h4>
-            <div style="max-height:220px;overflow:auto;border-radius:8px;border:1px solid #eef3f9;padding:6px;background:#fff">
-              <table id="dailyLogTable" style="width:100%;border-collapse:collapse">
-                <thead style="position:sticky;top:0;background:#f7fbff">
-                  <tr><th style="text-align:left;padding:6px;border-bottom:1px solid #eef3f9">Waktu</th><th style="text-align:right;padding:6px;border-bottom:1px solid #eef3f9">Suhu (°C)</th><th style="text-align:right;padding:6px;border-bottom:1px solid #eef3f9">Kelembaban (%)</th></tr>
-                </thead>
-                <tbody id="dailyLogBody"></tbody>
-              </table>
-            </div>
-            <div style="display:flex;gap:8px;margin-top:8px;justify-content:flex-end">
-              <button id="refreshDailyLog" class="ghost">Refresh</button>
-            </div>
-          </div>
+      <div class="row mt8">
+        <div class="col card" style="min-height:300px">
+          <canvas id="suhuChart"></canvas>
         </div>
-        <!-- /Bagian Baru -->
-
-        </div>
-
-        <div style="width:320px" class="card">
-          <h3 class="mb8">Data Terakhir</h3>
-          <p><b>Suhu:</b> <span id="latestSuhu">-</span> °C</p>
-          <p><b>Kelembaban:</b> <span id="latestKelembaban">-</span> %</p>
-          <p><b>Waktu:</b> <span id="latestTime">-</span></p>
-          <div class="mt8">
-            <label class="muted tiny">Ambang Batas (opsional)</label>
-            <div style="display:flex;gap:8px;margin-top:8px">
-              <input id="thresholdSuhu" type="number" placeholder="Suhu max (°C)" />
-              <input id="thresholdKelembaban" type="number" placeholder="Kelembaban max (%)" />
-            </div>
-            <div style="display:flex;gap:8px;margin-top:8px">
-              <button id="saveThreshold" class="primary">Simpan</button>
-              <button id="clearThreshold" class="ghost">Reset</button>
-            </div>
+        <div class="col" style="max-width:300px">
+          <div class="card">
+            <h3>Input Manual</h3>
+            <input id="inputSuhu" type="number" step="0.1" placeholder="Suhu °C" class="mb8">
+            <input id="inputKelembaban" type="number" placeholder="Lembab %" class="mb8">
+            <button id="saveManualSuhu" class="primary" style="width:100%">Simpan Data</button>
           </div>
-
-          <div class="mt8">
-            <button id="downloadCSV" class="ghost">⬇ Download CSV (50 terakhir)</button>
-            <button id="downloadPDFMonitor" class="primary">⬇ Download PDF</button>
-          </div>
+          <button id="downloadPDFMonitor" class="ghost mt8" style="width:100%">⬇ Unduh Laporan PDF</button>
         </div>
       </div>
-
-      <div class="mt8 card">
-        <h3>Log Terakhir</h3>
-        <div id="logList" style="margin-top:8px"></div>
+      <div class="card mt8">
+        <h3>Log Hari Ini</h3>
+        <table style="width:100%; border-collapse:collapse" class="tiny">
+          <thead><tr style="text-align:left; border-bottom:1px solid #eee"><th>Waktu</th><th>Suhu</th><th>Lembab</th></tr></thead>
+          <tbody id="dailyLogBody"></tbody>
+        </table>
       </div>
     </section>
-
   </div>
 
-  <!-- overlay popup -->
   <div id="overlayPopup" class="overlay">
     <div class="box">
-      <h3 id="overlayTitle">Pengingat</h3>
-      <p id="overlayMsg">Waktunya melakukan tugas.</p>
-      <div style="margin-top:12px">
-        <button id="overlayOk" class="primary">Oke</button>
-      </div>
+      <h3 id="overlayTitle">Notifikasi</h3>
+      <p id="overlayMsg">-</p>
+      <button id="overlayOk" class="primary">Mengerti</button>
     </div>
   </div>
 
-  <!-- Audio -->
-  <audio id="plingSound" preload="auto"><source src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg" type="audio/ogg"></audio>
-  <audio id="belSound" preload="auto"><source src="Notifikasi-pasien-baru.mp3" type="audio/mpeg"></audio>
+  <audio id="plingSound"><source src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg" type="audio/ogg"></audio>
+  <audio id="belSound"><source src="Notifikasi-pasien-baru.mp3" type="audio/mpeg"></audio>
 
-  <!-- ======================
-       Scripts: Logic & Firebase
-       ====================== -->
   <script>
-  (function(){
-    /* =========================
-       CONFIG: Firebase Database URLs
-       ========================= */
-    const belConfig = { databaseURL: "https://bel-pasien-default-rtdb.asia-southeast1.firebasedatabase.app" };
-    const schedConfig = { databaseURL: "https://jadwal-pemeriksaan-usg-default-rtdb.asia-southeast1.firebasedatabase.app" };
-    const notulenConfig = { databaseURL: "https://notulen-operan-dinas-default-rtdb.asia-southeast1.firebasedatabase.app" };
-    const monitoringConfig = { databaseURL: "https://monitoring-suhu-radiologi-default-rtdb.asia-southeast1.firebasedatabase.app/" };
-
-    /* =========================
-       INIT Firebase Apps (compat)
-       ========================= */
-    // Main apps (named)
-    const belApp = firebase.initializeApp(belConfig, "belApp");
-    const belDB = firebase.database(belApp);
-
-    const schedApp = firebase.initializeApp(schedConfig, "schedApp");
-    const schedDB = firebase.database(schedApp);
-
-    const notulenApp = firebase.initializeApp(notulenConfig, "notulenApp");
-    const notulenDB = firebase.database(notulenApp);
-
-    // Monitoring app (named)
-    const monitoringApp = firebase.initializeApp(monitoringConfig, "monitoringApp");
-    const monitoringDB = firebase.database(monitoringApp);
-
-    /* =========================
-       UI - Single Page Navigation
-       ========================= */
-    const views = document.querySelectorAll('.view');
-    const menuButtons = document.querySelectorAll('.nav-menu button');
-    function showView(id){
-      views.forEach(v => v.style.display = (v.id === id) ? '' : 'none');
-      menuButtons.forEach(b => {
-        if (b.dataset.view === id) b.classList.add('active');
-        else b.classList.remove('active');
-      });
-      // ensure chart resize when showing monitor view
-      if (id === 'monitorView') { setTimeout(()=>{ try { suhuChart.resize(); } catch(e){} }, 250); }
-    }
-    menuButtons.forEach(b => b.addEventListener('click', ()=> showView(b.dataset.view)));
-
-    /* ============= Preparations (schedule) ============= */
+    // GLOBAL SCOPE VARIABLES
+    let suhuChart;
     const preparations = {
-      ct_abdomen: `📌 Persiapan CT Scan Abdomen\n- Puasa makan & minum minimal 6 jam (kecuali air putih).\n- Minum cairan kontras oral jika diminta.\n- Hindari makanan berlemak & berserat tinggi 1 hari sebelum.\n- Informasikan alergi kontras/gagal ginjal/diabetes/hamil.\n- Datang 30 menit lebih awal.`,
-      usg_abdomen: `📌 Persiapan USG Abdomen\n- Puasa 6–8 jam.\n- Tidak merokok, kopi/teh, atau permen saat puasa.\n- Boleh minum sedikit air putih jika haus.`,
-      usg_lower_abdomen: `📌 Persiapan USG Lower Abdomen\n- Kandung kemih harus penuh.\n- Minum 3–4 gelas air ±1 jam sebelum.\n- Jangan buang air kecil hingga selesai.`,
-      ct_cardiac: `📌 Persiapan CT Scan Cardiac\n- Puasa 4–6 jam (air putih boleh).\n- Hindari kafein, cokelat, rokok 12–24 jam.\n- Obat rutin jangan dihentikan tanpa instruksi dokter.\n- Bisoprolol dimunum 4 jam sebelum pemeriksaan.`
+      ct_abdomen: `📌 Persiapan CT Scan Abdomen\n- Puasa makan 6 jam.\n- Minum kontras sesuai instruksi.\n- Cek ureum kreatinin.`,
+      usg_abdomen: `📌 Persiapan USG Abdomen\n- Puasa 6–8 jam.\n- Tahan kencing (jika abdomen bawah).`,
+      usg_lower_abdomen: `📌 Persiapan USG Lower Abdomen\n- Minum 3-4 gelas air 1 jam sebelum.\n- Jangan buang air kecil.`,
+      ct_cardiac: `📌 Persiapan CT Scan Cardiac\n- Puasa 4 jam.\n- Hindari kopi/rokok 24 jam.\n- Minum obat penurun nadi jika ada.`
     };
 
-    /* ============ Schedule Logic ============ */
-    const form = document.getElementById("scheduleForm");
-    const prep = document.getElementById("prep");
-    const procedure = document.getElementById("procedure");
-    const messageBox = document.getElementById("message");
-    const scheduleList = document.getElementById("scheduleList");
-    const viewDate = document.getElementById("viewDate");
-    const filterProcedure = document.getElementById("filterProcedure");
-    const nameInput = document.getElementById("name");
-    const waInput = document.getElementById("wa");
-    const dateInput = document.getElementById("date");
-    const timeInput = document.getElementById("time");
-    const saveSendBtn = document.getElementById("saveSendBtn");
+    (function() {
+      // FIREBASE CONFIG
+      const belDB = firebase.initializeApp({ databaseURL: "https://bel-pasien-default-rtdb.asia-southeast1.firebasedatabase.app" }, "bel").database();
+      const schedDB = firebase.initializeApp({ databaseURL: "https://jadwal-pemeriksaan-usg-default-rtdb.asia-southeast1.firebasedatabase.app" }, "sched").database();
+      const notulenDB = firebase.initializeApp({ databaseURL: "https://notulen-operan-dinas-default-rtdb.asia-southeast1.firebasedatabase.app" }, "notulen").database();
+      const monitoringDB = firebase.initializeApp({ databaseURL: "https://monitoring-suhu-radiologi-default-rtdb.asia-southeast1.firebasedatabase.app/" }, "monitor").database();
 
-    const today = new Date().toISOString().slice(0,10);
-    dateInput.value = today;
-    viewDate.value = today;
-    prep.value = preparations[procedure.value];
-
-    procedure.addEventListener("change", ()=> prep.value = preparations[procedure.value] || "");
-
-    async function saveSchedule(sendWA = false){
-      const name = nameInput.value.trim();
-      const wa = waInput.value.trim();
-      const date = dateInput.value;
-      const time = timeInput.value;
-      const proc = procedure.value;
-      if (!name || !wa || !date || !time) {
-        messageBox.textContent = "❌ Lengkapi semua field.";
-        return;
-      }
-      let waNorm = wa.replace(/[^0-9]/g,"");
-      if (waNorm.startsWith("0")) waNorm = "62"+waNorm.slice(1);
-      // check conflict
-      const snap = await schedDB.ref(`schedules/${date}`).get();
-      if (snap.exists()){
-        const day = snap.val();
-        const conflict = Object.values(day).some(s => s.time === time);
-        if (conflict) { messageBox.textContent = `⚠️ Slot jam ${time} sudah terisi, pilih jam lain.`; return; }
-      }
-      const newRef = schedDB.ref(`schedules/${date}`).push();
-      const payload = { id: newRef.key, name, wa, waNorm, procedure: proc, time };
-      await newRef.set(payload);
-      messageBox.textContent = "✅ Jadwal berhasil disimpan!";
-      form.reset(); dateInput.value = date; procedure.value = "ct_abdomen"; prep.value = preparations["ct_abdomen"];
-      if (sendWA) {
-        const text = `Salam Sehat,\nHaloo ${name} untuk pemeriksaan ${proc.replaceAll("_"," ").toUpperCase()} di Instalasi Radiologi RS Mitra Plumbon akan dilaksanakan pada ${date} pukul ${time}.\n\nDengan Persiapan:\n\n${preparations[proc]}\n\nMohon hadir tepat waktu.\nTerima Kasih 🙏`;
-        const waLink = `https://wa.me/${waNorm}?text=${encodeURIComponent(text)}`;
-        window.open(waLink, "_blank");
-      }
-    }
-
-    form.addEventListener("submit", e => { e.preventDefault(); saveSchedule(false); });
-    saveSendBtn.addEventListener("click", ()=> saveSchedule(true));
-
-    /* Render schedule list (realtime) */
-    let currentRef = null;
-    function detachCurrentListener(){
-      if (currentRef){
-        try { currentRef.off(); } catch(e){}
-        currentRef = null;
-      }
-    }
-    function renderScheduleList(date){
-      detachCurrentListener();
-      currentRef = schedDB.ref(`schedules/${date}`);
-      currentRef.on("value", snap => {
-        scheduleList.innerHTML = "";
-        if (!snap.exists()) { scheduleList.innerHTML = `<div class="muted" style="padding:18px">Belum ada jadwal.</div>`; return; }
-        const data = snap.val();
-        let arr = Object.values(data).sort((a,b)=> a.time.localeCompare(b.time));
-        const selectedFilter = filterProcedure.value;
-        if (selectedFilter !== "all") arr = arr.filter(s => s.procedure === selectedFilter);
-        if (arr.length === 0) { scheduleList.innerHTML = `<div class="muted" style="padding:18px">Tidak ada jadwal untuk filter ini.</div>`; return; }
-        arr.forEach(s => {
-          const item = document.createElement("div");
-          item.className = "card-item";
-          const title = document.createElement("div"); title.textContent = s.name; title.style.fontWeight="600";
-          const proc = document.createElement("div"); proc.textContent = (s.procedure||"").replaceAll("_"," ").toUpperCase(); proc.className = "muted";
-          const timeEl = document.createElement("div"); timeEl.className = "time"; timeEl.textContent = s.time;
-          const waAnchor = document.createElement("a"); waAnchor.className = "muted"; waAnchor.style.display="inline-block"; waAnchor.style.marginTop="8px"; waAnchor.style.textDecoration="underline";
-          waAnchor.target = "_blank";
-          const waText = `Salam Sehat,\nHaloo ${s.name} untuk pemeriksaan ${(s.procedure||"").replaceAll("_"," ").toUpperCase()} di Instalasi Radiologi RS Mitra Plumbon akan dilaksanakan pada ${date} pukul ${s.time}.\n\nDengan Persiapan :\n\n${preparations[s.procedure]}\n\nMohon hadir tepat waktu.\nTerima Kasih 🙏`;
-          waAnchor.href = `https://wa.me/${s.waNorm}?text=${encodeURIComponent(waText)}`;
-          waAnchor.textContent = "Kirim WA";
-          const delBtn = document.createElement("button"); delBtn.className="delete-btn"; delBtn.title="Hapus Jadwal"; delBtn.innerHTML = "🗑️";
-          delBtn.addEventListener("click", async () => {
-            if (!confirm(`Hapus jadwal ${s.name} (${s.time}) ?`)) return;
-            try { await schedDB.ref(`schedules/${date}/${s.id}`).remove(); } catch (err) { alert("Gagal menghapus: "+err.message); }
-          });
-          item.appendChild(delBtn); item.appendChild(title); item.appendChild(proc); item.appendChild(timeEl); item.appendChild(waAnchor);
-          scheduleList.appendChild(item);
-        });
-      });
-    }
-    renderScheduleList(today);
-    viewDate.addEventListener("change", ()=> renderScheduleList(viewDate.value));
-    filterProcedure.addEventListener("change", ()=> renderScheduleList(viewDate.value));
-
-    /* mini schedule for dashboard */
-    function loadMiniSchedule(date){
-      const ref = schedDB.ref(`schedules/${date}`);
-      ref.on('value', snap => {
-        const target = document.getElementById('miniScheduleList');
-        target.innerHTML = "";
-        if (!snap.exists()) { target.innerHTML = `<div class="muted" style="padding:12px">Belum ada jadwal hari ini.</div>`; return; }
-        const arr = Object.values(snap.val()).sort((a,b)=>a.time.localeCompare(b.time)).slice(0,6);
-        arr.forEach(s => {
-          const el = document.createElement('div'); el.className = 'card-item';
-          el.innerHTML = `<div style="font-weight:600">${s.name}</div><div class="muted">${(s.procedure||'').replaceAll('_',' ').toUpperCase()}</div><div style="font-weight:700;margin-top:6px">${s.time}</div>`;
-          target.appendChild(el);
-        });
-      });
-    }
-    loadMiniSchedule(today);
-
-    /* ============ Bel notif & Pengingat (Dashboard) ============ */
-    const enableBtn = document.getElementById('enableSoundBtn');
-    const belBtn = document.getElementById('belBtn');
-    const statusText = document.getElementById('status');
-    const belSound = document.getElementById('belSound');
-    const plingSound = document.getElementById('plingSound');
-    const notifImageArea = null; // not used in this all-in-one (keperluan sebelumnya)
-
-    let audioReady = false;
-    let lastBelTimestamp = 0;
-    function playBel(){
-      if (!audioReady) return;
-      try {
-        belSound.currentTime = 0;
-        belSound.play().then(()=>{ /* success */ }).catch(e=>console.warn(e));
-      } catch(e){}
-    }
-    enableBtn.addEventListener('click', ()=>{
-      belSound.play().then(()=>{ belSound.pause(); belSound.currentTime=0; audioReady=true; enableBtn.disabled = true; belBtn.disabled = false; statusText && (statusText.textContent = "✅ Suara aktif. Siap menerima notifikasi."); }).catch(err => { console.warn(err); statusText && (statusText.textContent = "⚠️ Browser memblokir autoplay. Klik izinkan suara."); });
-    });
-    belBtn.addEventListener('click', ()=>{
-      const ts = Date.now();
-      belDB.ref('bel_logs').push({ timestamp: ts });
-      statusText && (statusText.textContent = "🔔 Notifikasi dikirim ke semua perangkat!");
-      playBel();
-    });
-
-    let belRef = belDB.ref('bel_logs').limitToLast(1);
-    belRef.on('child_added', snapshot => {
-      const data = snapshot.val();
-      if (data && data.timestamp && data.timestamp !== lastBelTimestamp) {
-        lastBelTimestamp = data.timestamp;
-        playBel();
-        try { navigator.vibrate && navigator.vibrate([200,100,200]); } catch(e){}
-        statusText && (statusText.textContent = "📢 Ada pasien baru!");
-      }
-    });
-
-    /* Pengingat otomatis (popup) */
-    const overlay = document.getElementById('overlayPopup');
-    const overlayTitle = document.getElementById('overlayTitle');
-    const overlayMsg = document.getElementById('overlayMsg');
-    const overlayOk = document.getElementById('overlayOk');
-    const testPopupBtn = document.getElementById('testPopup');
-    const doneButton = document.getElementById('doneButton'); // may not exist in this page, ignore if null
-
-    const reminderTimes = [ {hour:10,minute:25}, {hour:13,minute:25}, {hour:17,minute:55} ];
-    const showDuration = 10 * 60 * 1000;
-    if ("Notification" in window) { if (Notification.permission !== "granted") Notification.requestPermission().catch(()=>{}); }
-    function showOverlay(title,msg){
-      overlayTitle.textContent = title || "Pengingat";
-      overlayMsg.textContent = msg || "Waktunya melakukan tugas.";
-      overlay.classList.add('show');
-      plingSound.currentTime = 0;
-      plingSound.play().catch(()=>{});
-      setTimeout(()=> overlay.classList.remove('show'), showDuration);
-    }
-    function checkTimePopup(){
-      const now = new Date();
-      const hour = now.getHours(); const minute = now.getMinutes();
-      reminderTimes.forEach(t => {
-        if (hour === t.hour && minute === t.minute) showOverlay('🔔 Pengingat Kepala Shift', 'Jangan lupa WA Dokter Spesialis sekarang.');
-      });
-    }
-    setInterval(checkTimePopup, 20000);
-    overlayOk.addEventListener('click', ()=> overlay.classList.remove('show'));
-    testPopupBtn && testPopupBtn.addEventListener('click', ()=> showOverlay('🔔 Tes Pengingat', 'Ini adalah pesan tes.'));
-
-    /* ============ NOTULEN Logic ============ */
-    function getNotulenChecklist(){
-      const obj = {};
-      document.querySelectorAll('.n_chk').forEach(cb => obj[cb.dataset.key] = cb.checked);
-      return obj;
-    }
-
-    const n_sigCanvas = document.getElementById('n_sigCanvas');
-    const n_sigPad = new SignaturePad(n_sigCanvas, { penColor: "rgb(20,20,20)" });
-    function n_resizeCanvas(){
-      const ratio = Math.max(window.devicePixelRatio || 1, 1);
-      n_sigCanvas.width = n_sigCanvas.offsetWidth * ratio;
-      n_sigCanvas.height = n_sigCanvas.offsetHeight * ratio;
-      n_sigCanvas.getContext("2d").scale(ratio, ratio);
-      n_sigPad.clear();
-    }
-    window.addEventListener('resize', n_resizeCanvas);
-    n_resizeCanvas();
-    document.getElementById('n_clearSig').addEventListener('click', ()=> n_sigPad.clear());
-
-    // Logo base64 placeholder (replace with your full base64)
-    const logoBase64 = "data:image/png;base64,"; // <-- PASTE base64 LOGO DI SINI jika ada
-
-    function buildNotulenHtml(data){
-      const checklist = data.checklist || {};
-      const listHtml = Object.entries(checklist).map(([k,v]) => `<li>${k.replaceAll('_',' ')}: ${v ? 'Ya':'Tidak'}</li>`).join('');
-      const sigImg = data.signature || '';
-      return `
-        <div style="font-family:'Times New Roman',serif;padding:20px;color:#000">
-          <table style="width:100%;border-bottom:2px solid #000;padding-bottom:6px">
-            <tr>
-              <td style="width:120px"><img src="${logoBase64}" style="width:120px;height:auto"></td>
-              <td style="text-align:center;vertical-align:middle">
-                <div style="font-size:16px;font-weight:bold">RUMAH SAKIT MITRA PLUMBON CIREBON</div>
-                <div style="font-size:15px;font-weight:bold">INSTALASI RADIOLOGI</div>
-                <div style="font-size:17px;font-weight:bold;margin-top:4px;text-decoration:underline">NOTULEN OPERAN DINAS HARIAN</div>
-              </td>
-              <td style="text-align:right;vertical-align:top;font-size:12px">RSMP/F.QMR.020/Rev.0</td>
-            </tr>
-          </table>
-
-          <table style="width:100%;margin-top:10px;font-size:13px">
-            <tr><td><b>Tanggal:</b> ${data.tanggal || ''}</td><td><b>Shift:</b> ${data.shift || ''}</td></tr>
-            <tr><td colspan="2"><b>Petugas (Kepala Shift):</b> ${data.petugas || ''}</td></tr>
-          </table>
-
-          <div style="margin-top:12px">
-            <b>Agenda / Isi Operan Dinas:</b><br>
-            <div style="border:1px solid #555;padding:8px;white-space:pre-wrap">${data.agenda || ''}</div>
-          </div>
-
-          <div style="margin-top:12px">
-            <b>Checklist Kontrol Mutu:</b>
-            <ul style="margin-left:20px">${listHtml}</ul>
-          </div>
-
-          <div style="margin-top:12px">
-            <b>Catatan / Saran:</b>
-            <div style="border:1px solid #555;padding:8px;white-space:pre-wrap">${data.catatan || ''}</div>
-          </div>
-
-          <table style="width:100%;margin-top:40px;text-align:center;font-size:13px">
-            <tr>
-              <td><b>Disetujui</b><br>Kepala Instalasi Radiologi<br><br><br><br><u>dr. Amelia Rusli, Sp.Rad</u></td>
-              <td><b>Mengetahui</b><br>Koordinator Radiologi<br><br><br><br><u>Ino Hadiwinata, A.Md.Rad</u></td>
-              <td><b>Dibuat Oleh</b><br>Kepala Shift<br>
-                <div style="border:1px solid #ccc;margin:4px;padding:4px">
-                  ${sigImg ? `<img src="${sigImg}" style="max-width:150px;height:auto">` : '<div style="height:80px"></div>'}
-                </div>
-                <u>${data.petugas || ''}</u>
-              </td>
-            </tr>
-          </table>
-        </div>
-      `;
-    }
-
-    const previewBox = document.getElementById('previewNotulen');
-    const docNotulen = document.getElementById('docNotulen');
-    document.getElementById('n_preview').addEventListener('click', ()=>{
-      const data = {
-        tanggal: document.getElementById('n_tanggal').value,
-        shift: document.getElementById('n_shift').value,
-        petugas: document.getElementById('n_petugas').value,
-        agenda: document.getElementById('n_agenda').value,
-        checklist: getNotulenChecklist(),
-        catatan: document.getElementById('n_catatan').value,
-        signature: n_sigPad.isEmpty() ? '' : n_sigPad.toDataURL()
-      };
-      docNotulen.innerHTML = buildNotulenHtml(data);
-      previewBox.style.display = 'block';
-      window.scrollTo({top:0,behavior:'smooth'});
-    });
-
-    document.getElementById('n_save').addEventListener('click', async ()=>{
-      const tanggal = document.getElementById('n_tanggal').value;
-      const petugas = document.getElementById('n_petugas').value;
-      if (!tanggal || !petugas) { alert('Isi tanggal dan nama Kepala Shift terlebih dahulu.'); return; }
-      const payload = {
-        tanggal,
-        shift: document.getElementById('n_shift').value,
-        petugas,
-        agenda: document.getElementById('n_agenda').value,
-        checklist: getNotulenChecklist(),
-        catatan: document.getElementById('n_catatan').value,
-        signature: n_sigPad.isEmpty() ? '' : n_sigPad.toDataURL(),
-        createdAt: Date.now()
-      };
-      try {
-        const newRef = notulenDB.ref('notulen').push();
-        await newRef.set(payload);
-        alert('Notulen tersimpan ke Firebase!');
-        docNotulen.innerHTML = buildNotulenHtml(payload);
-        previewBox.style.display = 'block';
-        n_sigPad.clear();
-      } catch (err) {
-        alert('Gagal menyimpan notulen: ' + err.message);
-      }
-    });
-
-    document.getElementById('n_downloadPdf').addEventListener('click', async ()=>{
-      if (!docNotulen.innerHTML.trim()) { alert('Buat preview dulu sebelum mengunduh.'); return; }
-      const canvas = await html2canvas(docNotulen, { scale: 2 });
-      const imgData = canvas.toDataURL('image/png');
-      const { jsPDF } = window.jspdf;
-      const pdf = new jsPDF('p','pt','a4');
-      const pageWidth = pdf.internal.pageSize.getWidth();
-      const imgWidth = pageWidth - 40;
-      const imgHeight = canvas.height * imgWidth / canvas.width;
-      pdf.addImage(imgData, 'PNG', 20, 20, imgWidth, imgHeight);
-      const tanggal = document.getElementById('n_tanggal').value || new Date().toISOString().slice(0,10);
-      pdf.save(`Notulen_${tanggal}.pdf`);
-    });
-
-    /* Load realtime notulen list */
-    const notulenListEl = document.getElementById('notulenList');
-    function loadNotulenList(){
-      const refNot = notulenDB.ref('notulen');
-      refNot.on('value', snap => {
-        const val = snap.val();
-        notulenListEl.innerHTML = '<h4>Riwayat Notulen</h4>';
-        if (!val) { notulenListEl.innerHTML += '<div class="muted">Belum ada notulen.</div>'; return; }
-        const ul = document.createElement('ul');
-        Object.keys(val).reverse().forEach(k => {
-          const it = val[k];
-          const d = new Date(it.createdAt || 0);
-          const li = document.createElement('li');
-          li.style.marginBottom = '8px';
-          li.innerHTML = `<strong>${it.tanggal}</strong> — ${it.shift} — ${it.petugas} <small class="muted">(${d.toLocaleString()})</small>
-            <button data-key="${k}" style="margin-left:8px;" class="ghost view-not">Lihat</button>
-            <button data-key="${k}" style="margin-left:6px;" class="ghost del-not">Hapus</button>`;
-          ul.appendChild(li);
-        });
-        notulenListEl.appendChild(ul);
-        document.querySelectorAll('.view-not').forEach(b => {
-          b.addEventListener('click', () => {
-            const data = val[b.dataset.key];
-            docNotulen.innerHTML = buildNotulenHtml(data);
-            previewBox.style.display = 'block';
-            window.scrollTo({top:0,behavior:'smooth'});
-          });
-        });
-        document.querySelectorAll('.del-not').forEach(b => {
-          b.addEventListener('click', async () => {
-            if (!confirm('Hapus notulen ini?')) return;
-            try {
-              await notulenDB.ref(`notulen/${b.dataset.key}`).remove();
-              alert('Terhapus.');
-            } catch (e) { alert('Gagal hapus: ' + e.message); }
-          });
-        });
-      });
-    }
-    loadNotulenList();
-
-    /* ---------------------------
-       Monitoring Suhu & Kelembaban
-       --------------------------- */
-    // Chart.js setup
-    const ctx = document.getElementById('suhuChart').getContext('2d');
-    
-// WAIT for date adapter to be ready before creating the chart
-function createSuhuChartWhenAdapterReady() {
-  const maxAttempts = 50;
-  let attempts = 0;
-  function tryCreate() {
-    attempts++;
-    if (window.Chart && Chart._adapters && Chart._adapters._date) {
-      // Adapter ready — create the chart now
-      try {
-        const suhuChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: [],
-        datasets: [
-          {
-            label: 'Suhu (°C)',
-            data: [],
-            borderColor: 'rgba(255,99,132,1)',
-            backgroundColor: 'rgba(255,99,132,0.12)',
-            tension: 0.25,
-            pointRadius: 2,
-            borderWidth: 2,
-            yAxisID: 'y'
-          },
-          {
-            label: 'Kelembaban (%)',
-            data: [],
-            borderColor: 'rgba(54,162,235,1)',
-            backgroundColor: 'rgba(54,162,235,0.08)',
-            tension: 0.25,
-            pointRadius: 2,
-            borderWidth: 2,
-            yAxisID: 'y'
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: { mode: 'index', intersect: false },
-        scales: {
-          x: { type: 'time', time: { tooltipFormat: 'HH:mm:ss', displayFormats: { second:'HH:mm:ss', minute:'HH:mm' } }, title: { display: true, text: 'Waktu' } },
-          y: { position:'left', title: { display:true, text: 'Nilai' }, beginAtZero: false }
-        },
-        plugins: {
-          legend: { position: 'top' }
+      // NAVIGATION
+      const views = document.querySelectorAll('.view');
+      const menuBtns = document.querySelectorAll('.nav-menu button');
+      function showView(viewId) {
+        views.forEach(v => v.style.display = v.id === viewId ? 'block' : 'none');
+        menuBtns.forEach(b => b.classList.toggle('active', b.dataset.view === viewId));
+        if(viewId === 'monitorView' && suhuChart) {
+          setTimeout(() => suhuChart.resize(), 100);
         }
       }
-    });
-      } catch (e) {
-        console.error('Failed creating chart:', e);
-      }
-      return;
-    }
-    if (attempts < maxAttempts) {
-      setTimeout(tryCreate, 100);
-    } else {
-      console.error('Date adapter not available after waiting — chart may not render.');
-    }
-  }
-  tryCreate();
-}
-createSuhuChartWhenAdapterReady();
-// threshold inputs
-    const thresholdSuhuInput = document.getElementById('thresholdSuhu');
-    const thresholdKelembabanInput = document.getElementById('thresholdKelembaban');
-    const saveThresholdBtn = document.getElementById('saveThreshold');
-    const clearThresholdBtn = document.getElementById('clearThreshold');
+      menuBtns.forEach(b => b.addEventListener('click', () => showView(b.dataset.view)));
 
-    // store threshold in localStorage simple
-    function loadThresholds(){
-      const s = localStorage.getItem('th_suhu');
-      const k = localStorage.getItem('th_kelembaban');
-      if (s) thresholdSuhuInput.value = s;
-      if (k) thresholdKelembabanInput.value = k;
-    }
-    loadThresholds();
-    saveThresholdBtn.addEventListener('click', ()=> {
-      localStorage.setItem('th_suhu', thresholdSuhuInput.value || '');
-      localStorage.setItem('th_kelembaban', thresholdKelembabanInput.value || '');
-      alert('Threshold tersimpan.');
-    });
-    clearThresholdBtn.addEventListener('click', ()=> {
-      localStorage.removeItem('th_suhu');
-      localStorage.removeItem('th_kelembaban');
-      thresholdSuhuInput.value = '';
-      thresholdKelembabanInput.value = '';
-      alert('Threshold direset.');
-    });
+      // --- SCHEDULE LOGIC ---
+      const schedForm = document.getElementById('scheduleForm');
+      const procSelect = document.getElementById('procedure');
+      const prepArea = document.getElementById('prep');
+      procSelect.addEventListener('change', () => prepArea.value = preparations[procSelect.value]);
+      prepArea.value = preparations[procSelect.value];
 
-    // Read last 50 logs and update chart & UI
-    const logsRef = monitoringDB.ref('logs').limitToLast(50);
-    logsRef.on('value', snap => {
-      const data = snap.val();
-      if (!data) {
-        // clear
-        suhuChart.data.labels = [];
-        suhuChart.data.datasets[0].data = [];
-        suhuChart.data.datasets[1].data = [];
-        suhuChart.update();
-        document.getElementById('latestSuhu').innerText = '-';
-        document.getElementById('latestKelembaban').innerText = '-';
-        document.getElementById('latestTime').innerText = '-';
-        document.getElementById('navSuhu').innerText = '-- °C';
-        document.getElementById('navKelembaban').innerText = '-- %';
-        document.getElementById('dashSuhuLarge').innerText = '--';
-        document.getElementById('dashKelembabanLarge').innerText = '--';
-        document.getElementById('dashLastUpdate').innerText = '-';
-        document.getElementById('logList').innerHTML = `<div class="muted">Belum ada data monitoring.</div>`;
-        return;
-      }
-      // convert to sorted array by timestamp key order
-      const arr = Object.values(data).sort((a,b)=> new Date(a.timestamp) - new Date(b.timestamp));
-      const labels = arr.map(e => new Date(e.timestamp));
-      const suhuData = arr.map(e => parseFloat(e.suhu));
-      const kelembabanData = arr.map(e => parseFloat(e.kelembaban));
+      schedForm.onsubmit = async (e) => {
+        e.preventDefault();
+        const date = document.getElementById('date').value;
+        const payload = {
+          name: document.getElementById('name').value,
+          wa: document.getElementById('wa').value,
+          time: document.getElementById('time').value,
+          procedure: procSelect.value,
+          timestamp: Date.now()
+        };
+        await schedDB.ref(`schedules/${date}`).push(payload);
+        alert('Jadwal tersimpan');
+        schedForm.reset();
+      };
 
-      // update chart
-      suhuChart.data.labels = labels;
-      suhuChart.data.datasets[0].data = suhuData;
-      suhuChart.data.datasets[1].data = kelembabanData;
-      suhuChart.update();
-
-      // update latest display
-      const last = arr[arr.length-1];
-      if (last){
-        const lastTime = new Date(last.timestamp);
-        document.getElementById('latestSuhu').innerText = (last.suhu===undefined ? '-' : parseFloat(last.suhu).toFixed(1));
-        document.getElementById('latestKelembaban').innerText = (last.kelembaban===undefined ? '-' : parseFloat(last.kelembaban).toFixed(1));
-        document.getElementById('latestTime').innerText = lastTime.toLocaleString();
-        document.getElementById('navSuhu').innerText = (last.suhu===undefined ? '-- °C' : parseFloat(last.suhu).toFixed(1)+' °C');
-        document.getElementById('navKelembaban').innerText = (last.kelembaban===undefined ? '-- %' : parseFloat(last.kelembaban).toFixed(0)+' %');
-        document.getElementById('dashSuhuLarge').innerText = (last.suhu===undefined ? '--' : parseFloat(last.suhu).toFixed(1));
-        document.getElementById('dashKelembabanLarge').innerText = (last.kelembaban===undefined ? '--' : parseFloat(last.kelembaban).toFixed(0));
-        document.getElementById('dashLastUpdate').innerText = lastTime.toLocaleString();
-      }
-
-      // build log list
-      const logList = document.getElementById('logList');
-      logList.innerHTML = '';
-      arr.slice().reverse().forEach(e => {
-        const d = new Date(e.timestamp);
-        const li = document.createElement('div');
-        li.className = 'card-item';
-        li.style.marginBottom = '6px';
-        li.innerHTML = `<div style="display:flex;justify-content:space-between"><div><strong>${parseFloat(e.suhu).toFixed(1)} °C</strong> — ${parseFloat(e.kelembaban).toFixed(0)} %</div><div class="muted tiny">${d.toLocaleString()}</div></div>`;
-        logList.appendChild(li);
-      });
-    });
-
-    // Also listen to child_added for live alerts if threshold exceeded
-    monitoringDB.ref('logs').limitToLast(1).on('child_added', snap => {
-      const e = snap.val();
-      if (!e) return;
-      const thS = parseFloat(localStorage.getItem('th_suhu')) || null;
-      const thK = parseFloat(localStorage.getItem('th_kelembaban')) || null;
-      if ((thS && e.suhu && parseFloat(e.suhu) > thS) || (thK && e.kelembaban && parseFloat(e.kelembaban) > thK)) {
-        showOverlay('⚠️ Peringatan Monitoring', `Nilai melewati threshold: Suhu ${e.suhu} °C / Kelembaban ${e.kelembaban}%`);
-      }
-    });
-
-    /* Download CSV of last 50 */
-    document.getElementById('downloadCSV').addEventListener('click', async ()=>{
-      const snap = await monitoringDB.ref('logs').limitToLast(50).get();
-      const data = snap.val();
-      if (!data) { alert('Tidak ada data.'); return; }
-      const arr = Object.values(data).sort((a,b)=> new Date(a.timestamp)-new Date(b.timestamp));
-      let csv = 'timestamp,suhu,kelembaban\n';
-      arr.forEach(r => csv += `"${r.timestamp}",${r.suhu},${r.kelembaban}\n`);
-      const blob = new Blob([csv], { type: 'text/csv' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a'); a.href = url; a.download = `monitoring_suhu_${new Date().toISOString().slice(0,10)}.csv`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-    });
-
-    /* Download PDF (chart + latest) */
-    document.getElementById('downloadPDFMonitor').addEventListener('click', async ()=>{
-      const container = document.querySelector('#monitorView .card');
-      // we will create small report panel
-      const report = document.createElement('div');
-      report.style.background = '#fff';
-      report.style.padding = '12px';
-      report.style.width = '800px';
-      report.innerHTML = `<h3>Rekap Monitoring Suhu & Kelembaban</h3><p>Sumber: Instalasi Radiologi - RS Mitra Plumbon</p><div id="reportChartArea" style="margin-top:8px"></div><div style="margin-top:12px"><b>Terakhir:</b> Suhu ${document.getElementById('latestSuhu').innerText} °C — Kelembaban ${document.getElementById('latestKelembaban').innerText}% <br>Waktu: ${document.getElementById('latestTime').innerText}</div>`;
-      document.body.appendChild(report);
-      // render chart area (reuse canvas snapshot)
-      const chartCanvas = document.getElementById('suhuChart');
-      const chartImage = chartCanvas.toDataURL('image/png');
-      const img = document.createElement('img'); img.src = chartImage; img.style.maxWidth='100%';
-      report.querySelector('#reportChartArea').appendChild(img);
-      const canvas = await html2canvas(report, { scale: 2 });
-      const imgData = canvas.toDataURL('image/png');
-      const { jsPDF } = window.jspdf;
-      const pdf = new jsPDF('p','pt','a4');
-      const pageWidth = pdf.internal.pageSize.getWidth();
-      const imgWidth = pageWidth - 40;
-      const imgHeight = canvas.height * imgWidth / canvas.width;
-      pdf.addImage(imgData, 'PNG', 20, 20, imgWidth, imgHeight);
-      pdf.save(`MonitoringSuhu_${new Date().toISOString().slice(0,10)}.pdf`);
-      report.remove();
-    });
-
-    /* =========================
-       Mini Notulen list for Dashboard
-       ========================= */
-    function loadMiniNotulen(){
-      const ref = notulenDB.ref('notulen').limitToLast(6);
-      ref.on('value', snap => {
-        const val = snap.val();
-        const target = document.getElementById('miniNotulenList');
-        target.innerHTML = '';
-        if (!val) { target.innerHTML = '<div class="muted">Belum ada notulen.</div>'; return; }
-        const arr = Object.values(val).sort((a,b)=> (b.createdAt||0) - (a.createdAt||0)).slice(0,6);
-        arr.forEach(it => {
-          const d = new Date(it.createdAt||0);
-          const el = document.createElement('div'); el.className='card-item';
-          el.innerHTML = `<div style="font-weight:600">${it.petugas}</div><div class="muted">${it.tanggal} — ${it.shift}</div><div class="muted tiny">${d.toLocaleString()}</div>`;
-          target.appendChild(el);
+      // REALTIME SCHEDULE LIST
+      const today = new Date().toISOString().split('T')[0];
+      schedDB.ref(`schedules/${today}`).on('value', snap => {
+        const list = document.getElementById('scheduleList');
+        const mini = document.getElementById('miniScheduleList');
+        list.innerHTML = ''; mini.innerHTML = '';
+        if(!snap.exists()) return;
+        
+        Object.entries(snap.val()).forEach(([key, s]) => {
+          const item = `<div class="card-item">
+            <strong>${s.name}</strong><br><span class="tiny">${s.time} | ${s.procedure}</span>
+          </div>`;
+          list.innerHTML += item;
+          mini.innerHTML += item;
         });
       });
-    }
-    loadMiniNotulen();
 
-    /* =========================
-       Navbar small status (update nav status initially)
-       ========================= */
-    // already handled by monitoring logs listener above which updates nav elements
+      // --- MONITORING & CHART LOGIC ---
+      function initChart() {
+        const ctx = document.getElementById('suhuChart').getContext('2d');
+        suhuChart = new Chart(ctx, {
+          type: 'line',
+          data: { labels: [], datasets: [
+            { label: 'Suhu (°C)', data: [], borderColor: '#ff6384', tension: 0.3 },
+            { label: 'Lembab (%)', data: [], borderColor: '#36a2eb', tension: 0.3 }
+          ]},
+          options: { 
+            responsive: true, 
+            maintainAspectRatio: false,
+            scales: { x: { type: 'time', time: { unit: 'minute' } } }
+          }
+        });
+      }
 
-    /* =========================
-       Clean up on unload
-       ========================= */
-    window.addEventListener('beforeunload', ()=> {
-      try { detachCurrentListener(); } catch(e){}
-      try { belRef.off(); } catch(e){}
-      try { monitoringDB.ref('logs').off(); } catch(e){}
-    });
+      monitoringDB.ref('logs').limitToLast(30).on('value', snap => {
+        if(!suhuChart) initChart();
+        const data = snap.val();
+        if(!data) return;
+        
+        const arr = Object.values(data).sort((a,b) => new Date(a.timestamp) - new Date(b.timestamp));
+        suhuChart.data.labels = arr.map(i => new Date(i.timestamp));
+        suhuChart.data.datasets[0].data = arr.map(i => i.suhu);
+        suhuChart.data.datasets[1].data = arr.map(i => i.kelembaban);
+        suhuChart.update();
 
-    /* =========================
-       Final small UX bits: set default view & date
-       ========================= */
-    showView('dashboardView');
-    // ensure date fields prefilled
-    document.getElementById('n_tanggal').value = new Date().toISOString().slice(0,10);
-    document.getElementById('viewDate').value = new Date().toISOString().slice(0,10);
+        const last = arr[arr.length - 1];
+        document.getElementById('navSuhu').innerText = last.suhu + '°C';
+        document.getElementById('navKelembaban').innerText = last.kelembaban + '%';
+        document.getElementById('dashSuhuLarge').innerText = last.suhu + '°C';
+        document.getElementById('dashKelembabanLarge').innerText = last.kelembaban + '%';
+        document.getElementById('dashLastUpdate').innerText = 'Terakhir: ' + new Date(last.timestamp).toLocaleTimeString();
+      });
 
-  })();
-  
-/* 🔧 Bagian Baru (JS): Simpan manual suhu & render tabel harian */
-(function(){
-  const inputSuhu = document.getElementById('inputSuhu');
-  const inputKelembaban = document.getElementById('inputKelembaban');
-  const saveBtn = document.getElementById('saveManualSuhu');
-  const clearBtn = document.getElementById('clearManualSuhu');
-  const msgBox = document.getElementById('manualSaveMsg');
-  const dailyTableBody = document.getElementById('dailyLogBody');
-  const refreshBtn = document.getElementById('refreshDailyLog');
-
-  // Helper: push new log to monitoringDB/ref('logs')
-  async function pushManualLog(suhuVal, kelembabanVal){
-    try{
-      const payload = {
-        suhu: suhuVal,
-        kelembaban: kelembabanVal,
-        timestamp: new Date().toISOString()
+      document.getElementById('saveManualSuhu').onclick = async () => {
+        const s = document.getElementById('inputSuhu').value;
+        const k = document.getElementById('inputKelembaban').value;
+        if(!s || !k) return alert('Isi data!');
+        await monitoringDB.ref('logs').push({ suhu: s, kelembaban: k, timestamp: new Date().toISOString() });
+        document.getElementById('inputSuhu').value = '';
+        document.getElementById('inputKelembaban').value = '';
       };
-      // use push to create unique key
-      const newRef = monitoringDB.ref('logs').push();
-      await newRef.set(payload);
-      return { ok:true, key: newRef.key };
-    }catch(err){
-      console.error('Gagal simpan manual log', err);
-      return { ok:false, error: err };
-    }
-  }
 
-  saveBtn && saveBtn.addEventListener('click', async function(){
-    msgBox.textContent = '';
-    const sVal = inputSuhu.value;
-    const kVal = inputKelembaban.value;
-    if (!sVal && !kVal){ msgBox.textContent = 'Isi suhu dan/atau kelembaban.'; return; }
-    const sNum = parseFloat(sVal);
-    const kNum = parseFloat(kVal);
-    if (isNaN(sNum) || isNaN(kNum)){ msgBox.textContent = 'Nilai tidak valid.'; return; }
-    saveBtn.disabled = true;
-    saveBtn.textContent = 'Menyimpan...';
-    const res = await pushManualLog(sNum, kNum);
-    if (res.ok){
-      msgBox.textContent = '✅ Data tersimpan.'; inputSuhu.value=''; inputKelembaban.value='';
-      setTimeout(()=> msgBox.textContent = '', 3000);
-    } else {
-      msgBox.textContent = '❌ Gagal menyimpan: ' + (res.error && res.error.message ? res.error.message : 'unknown');
-    }
-    saveBtn.disabled = false; saveBtn.textContent = '💾 Simpan Suhu';
-  });
+      // --- NOTULEN & SIGNATURE ---
+      const canvas = document.getElementById('n_sigCanvas');
+      const signaturePad = new SignaturePad(canvas);
+      document.getElementById('n_clearSig').onclick = () => signaturePad.clear();
 
-  clearBtn && clearBtn.addEventListener('click', function(){ inputSuhu.value=''; inputKelembaban.value=''; msgBox.textContent=''; });
+      document.getElementById('n_save').onclick = async () => {
+        const payload = {
+          tanggal: document.getElementById('n_tanggal').value,
+          shift: document.getElementById('n_shift').value,
+          petugas: document.getElementById('n_petugas').value,
+          agenda: document.getElementById('n_agenda').value,
+          signature: signaturePad.toDataURL(),
+          createdAt: Date.now()
+        };
+        await notulenDB.ref('notulen').push(payload);
+        alert('Notulen disimpan');
+      };
 
-  // Render daily log table (latest first). We'll fetch last 200 entries and filter by today's date (local)
-  async function loadDailyLogs(){
-    try{
-      dailyTableBody.innerHTML = '<tr><td colspan="3" class="muted" style="padding:8px">Memuat...</td></tr>';
-      const snap = await monitoringDB.ref('logs').limitToLast(200).get();
-      const val = snap.val();
-      if (!val){ dailyTableBody.innerHTML = '<tr><td colspan="3" class="muted" style="padding:8px">Belum ada data.</td></tr>'; return; }
-      const arr = Object.values(val).map(v => (Object.assign({}, v))).sort((a,b)=> new Date(b.timestamp) - new Date(a.timestamp));
-      // Filter to today (local)
-      const today = new Date();
-      const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-      const endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate()+1);
-      const filtered = arr.filter(r => {
-        try {
-          const t = new Date(r.timestamp);
-          return t >= startOfDay && t < endOfDay;
-        } catch(e) { return false; }
-      });
-      if (filtered.length === 0){ dailyTableBody.innerHTML = '<tr><td colspan="3" class="muted" style="padding:8px">Tidak ada data hari ini.</td></tr>'; return; }
-      dailyTableBody.innerHTML = '';
-      filtered.forEach(r => {
-        const t = new Date(r.timestamp);
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td style="padding:6px;border-bottom:1px solid #f1f6fb">${t.toLocaleString()}</td><td style="padding:6px;border-bottom:1px solid #f1f6fb;text-align:right">${parseFloat(r.suhu).toFixed(1)}</td><td style="padding:6px;border-bottom:1px solid #f1f6fb;text-align:right">${parseFloat(r.kelembaban).toFixed(0)}</td>`;
-        dailyTableBody.appendChild(tr);
-      });
-    }catch(err){
-      console.error('Gagal loadDailyLogs', err);
-      dailyTableBody.innerHTML = '<tr><td colspan="3" class="muted" style="padding:8px">Gagal memuat data.</td></tr>';
-    }
-  }
+      // --- ALERT & SOUNDS ---
+      let audioReady = false;
+      document.getElementById('enableSoundBtn').onclick = () => {
+        audioReady = true;
+        document.getElementById('enableSoundBtn').disabled = true;
+        document.getElementById('belBtn').disabled = false;
+      };
 
-  refreshBtn && refreshBtn.addEventListener('click', loadDailyLogs);
+      function triggerAlert(title, msg) {
+        document.getElementById('overlayTitle').innerText = title;
+        document.getElementById('overlayMsg').innerText = msg;
+        document.getElementById('overlayPopup').classList.add('show');
+        if(audioReady) document.getElementById('plingSound').play();
+      }
 
-  // Realtime update: when logs change, reload table (debounced)
-  let reloadTimer = null;
-  monitoringDB.ref('logs').limitToLast(1).on('child_added', snap => {
-    if (reloadTimer) clearTimeout(reloadTimer);
-    reloadTimer = setTimeout(()=> {
-      loadDailyLogs();
-    }, 300);
-  });
+      document.getElementById('overlayOk').onclick = () => document.getElementById('overlayPopup').classList.remove('show');
+      document.getElementById('testPopup').onclick = () => triggerAlert('Tes Notif', 'Sistem pengingat berfungsi!');
 
-  // initial load
-  setTimeout(loadDailyLogs, 300);
-})();
-</script>
+      // Check shift reminders
+      setInterval(() => {
+        const now = new Date();
+        const timeStr = now.getHours() + ":" + now.getMinutes();
+        if(["10:25", "13:25", "17:55"].includes(timeStr)) {
+          triggerAlert('Shift Reminder', 'Waktunya koordinasi dengan Dokter Spesialis.');
+        }
+      }, 60000);
 
+      // PDF EXPORT (Monitoring)
+      document.getElementById('downloadPDFMonitor').onclick = async () => {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const chartImg = document.getElementById('suhuChart').toDataURL('image/png');
+        
+        pdf.text("Laporan Monitoring Suhu Radiologi", 10, 10);
+        pdf.text(`Tanggal: ${new Date().toLocaleDateString()}`, 10, 20);
+        pdf.addImage(chartImg, 'PNG', 10, 30, 180, 80);
+        pdf.save('Laporan_Suhu.pdf');
+      };
+
+    })();
+  </script>
 </body>
 </html>
